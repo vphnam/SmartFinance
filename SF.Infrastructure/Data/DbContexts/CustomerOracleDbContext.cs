@@ -5,13 +5,13 @@ using SF.Domain.Customers.CustomerAggregate;
 
 namespace SF.Infrastructure.Data.DbContexts;
 
-public partial class ModelContext : DbContext
+public partial class CustomerOracleDbContext : DbContext
 {
-    public ModelContext()
+    public CustomerOracleDbContext()
     {
     }
 
-    public ModelContext(DbContextOptions<ModelContext> options)
+    public CustomerOracleDbContext(DbContextOptions<CustomerOracleDbContext> options)
         : base(options)
     {
     }

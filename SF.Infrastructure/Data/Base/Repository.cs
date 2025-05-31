@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SF.Infrastructure.Data.Base
 {
-    internal class Repository<TEntity, TDbContext> : IRepository<TEntity> where TEntity : EntityBase where TDbContext : DbContext
+    public class Repository<TEntity, TDbContext> : IRepository<TEntity> where TEntity : EntityBase where TDbContext : DbContext
     {
         protected readonly DbContext _dbContext;
         
