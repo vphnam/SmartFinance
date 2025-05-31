@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using SF.Domain.Customers.CustomerAggregate;
 
-namespace SmartFinance.SmartFinanceDB;
+namespace SF.Infrastructure.Data.DbContexts;
 
 public partial class ModelContext : DbContext
 {
