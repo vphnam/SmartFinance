@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace NR.Infrastructure.Dummy.PersonalFinanceDB;
+namespace SmartFinance.SmartFinanceDB;
 
-public partial class CustomerDbContext : DbContext
+public partial class ModelContext : DbContext
 {
-    public CustomerDbContext()
+    public ModelContext()
     {
     }
 
-    public CustomerDbContext(DbContextOptions<CustomerDbContext> options)
+    public ModelContext(DbContextOptions<ModelContext> options)
         : base(options)
     {
     }

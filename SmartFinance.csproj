@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -10,10 +10,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SF.Domain\**" />
+    <Compile Remove="SF.Infrastructure.Dummy\**" />
+    <Compile Remove="SF.Infrastructure\**" />
+    <Content Remove="SF.Domain\**" />
+    <Content Remove="SF.Infrastructure.Dummy\**" />
+    <Content Remove="SF.Infrastructure\**" />
+    <EmbeddedResource Remove="SF.Domain\**" />
+    <EmbeddedResource Remove="SF.Infrastructure.Dummy\**" />
+    <EmbeddedResource Remove="SF.Infrastructure\**" />
+    <None Remove="SF.Domain\**" />
+    <None Remove="SF.Infrastructure.Dummy\**" />
+    <None Remove="SF.Infrastructure\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.5" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Oracle.EntityFrameworkCore" Version="9.23.80" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.8.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SF.Application.Contracts\SF.Application.Contracts.csproj" />
+    <ProjectReference Include="..\SF.Application\SF.Application.csproj" />
+    <ProjectReference Include="..\SF.Domain.Shared\SF.Domain.Shared.csproj" />
+    <ProjectReference Include="SF.Infrastructure\SF.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

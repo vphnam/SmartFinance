@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NR.Infrastructure.Dummy.PersonalFinanceDB;
+namespace SmartFinance.SmartFinanceDB;
 
 public partial class Customer
 {
