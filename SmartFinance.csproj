@@ -5,20 +5,32 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>3c70d4fc-f778-4e43-91e6-3823ff042eee</UserSecretsId>
-    <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="SF.Application.Contracts\**" />
+    <Compile Remove="SF.Application\**" />
+    <Compile Remove="SF.Domain.Shared\**" />
     <Compile Remove="SF.Domain\**" />
     <Compile Remove="SF.Infrastructure.Dummy\**" />
     <Compile Remove="SF.Infrastructure\**" />
+    <Content Remove="SF.Application.Contracts\**" />
+    <Content Remove="SF.Application\**" />
+    <Content Remove="SF.Domain.Shared\**" />
     <Content Remove="SF.Domain\**" />
     <Content Remove="SF.Infrastructure.Dummy\**" />
     <Content Remove="SF.Infrastructure\**" />
+    <EmbeddedResource Remove="SF.Application.Contracts\**" />
+    <EmbeddedResource Remove="SF.Application\**" />
+    <EmbeddedResource Remove="SF.Domain.Shared\**" />
     <EmbeddedResource Remove="SF.Domain\**" />
     <EmbeddedResource Remove="SF.Infrastructure.Dummy\**" />
     <EmbeddedResource Remove="SF.Infrastructure\**" />
+    <None Remove="SF.Application.Contracts\**" />
+    <None Remove="SF.Application\**" />
+    <None Remove="SF.Domain.Shared\**" />
     <None Remove="SF.Domain\**" />
     <None Remove="SF.Infrastructure.Dummy\**" />
     <None Remove="SF.Infrastructure\**" />
@@ -40,6 +52,9 @@
     <ProjectReference Include="..\SF.Application.Contracts\SF.Application.Contracts.csproj" />
     <ProjectReference Include="..\SF.Application\SF.Application.csproj" />
     <ProjectReference Include="..\SF.Domain.Shared\SF.Domain.Shared.csproj" />
+    <ProjectReference Include="SF.Application.Contracts\SF.Application.Contracts.csproj" />
+    <ProjectReference Include="SF.Application\SF.Application.csproj" />
+    <ProjectReference Include="SF.Domain.Shared\SF.Domain.Shared.csproj" />
     <ProjectReference Include="SF.Infrastructure\SF.Infrastructure.csproj" />
   </ItemGroup>
 
