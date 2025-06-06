@@ -49,12 +49,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SF.Application.Contracts\SF.Application.Contracts.csproj" />
-    <ProjectReference Include="..\SF.Application\SF.Application.csproj" />
-    <ProjectReference Include="..\SF.Domain.Shared\SF.Domain.Shared.csproj" />
-    <ProjectReference Include="SF.Application.Contracts\SF.Application.Contracts.csproj" />
     <ProjectReference Include="SF.Application\SF.Application.csproj" />
-    <ProjectReference Include="SF.Domain.Shared\SF.Domain.Shared.csproj" />
+    <ProjectReference Include="SF.Domain\SF.Domain.csproj" />
     <ProjectReference Include="SF.Infrastructure\SF.Infrastructure.csproj" />
   </ItemGroup>
 
