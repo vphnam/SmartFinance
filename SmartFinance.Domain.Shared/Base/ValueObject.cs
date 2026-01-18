@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartFinance.Domain.Shared
+namespace SmartFinance.Domain.Shared.Base
 {
+    // Prevent direct instantiation
     public abstract class ValueObject
     {
         protected abstract IEnumerable<object> GetEqualityComponents();
@@ -31,7 +32,7 @@ namespace SmartFinance.Domain.Shared
             {
                 unchecked
                 {
-                    return (current * 23) + (obj?.GetHashCode() ?? 0);
+                    return current * 23 + (obj?.GetHashCode() ?? 0);
                 }
             });
         }

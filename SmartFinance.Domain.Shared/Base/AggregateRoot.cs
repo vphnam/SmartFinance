@@ -9,7 +9,8 @@ namespace SmartFinance.Domain.Shared.Base
 {
     public abstract class AggregateRoot
     {
-        private readonly List<IDomainEvent> _domainEvents = new();
+        //unsed for now, will be used in future for domain events
+        /*private readonly List<IDomainEvent> _domainEvents = new();
 
         public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
 
@@ -21,6 +22,6 @@ namespace SmartFinance.Domain.Shared.Base
         public void ClearDomainEvent()
         {
             _domainEvents.Clear();
-        }
+        }*/
     }
 }

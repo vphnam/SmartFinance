@@ -10,10 +10,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Domain", "SmartFinance.Domain\SmartFinance.Domain.csproj", "{C4A76FF4-2528-4856-946E-655B70638D1A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{D8C66097-CF34-46A5-93FD-B34B2DA6A2E5} = {D8C66097-CF34-46A5-93FD-B34B2DA6A2E5}
+		{F1227193-A07F-4553-B0D4-213D5BC5D287} = {F1227193-A07F-4553-B0D4-213D5BC5D287}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Infrastructure", "SmartFinance.Infrastructure\SmartFinance.Infrastructure.csproj", "{D8C66097-CF34-46A5-93FD-B34B2DA6A2E5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C4A76FF4-2528-4856-946E-655B70638D1A} = {C4A76FF4-2528-4856-946E-655B70638D1A}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.API", "SmartFinance.API\SmartFinance.API.csproj", "{CEE85479-89C9-4771-BCAC-29AE5DC197C7}"
 EndProject
