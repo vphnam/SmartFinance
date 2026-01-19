@@ -1,6 +1,8 @@
-using System;
-using SmartFinance.Infrastructure;
+using Serilog;
+using SmartFinance.API.Middlewares;
 using SmartFinance.Application;
+using SmartFinance.Infrastructure;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,12 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplicationCoreService();
 
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("Logs/requests.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +36,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();
