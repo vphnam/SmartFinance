@@ -6,6 +6,8 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Application", "SmartFinance.Application\SmartFinance.Application.csproj", "{74532E83-ABAD-4CC0-974A-A05C5B42D196}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C4A76FF4-2528-4856-946E-655B70638D1A} = {C4A76FF4-2528-4856-946E-655B70638D1A}
+		{C6EF39E0-BB2E-43F8-9A92-481D212B554D} = {C6EF39E0-BB2E-43F8-9A92-481D212B554D}
+		{F1227193-A07F-4553-B0D4-213D5BC5D287} = {F1227193-A07F-4553-B0D4-213D5BC5D287}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Domain", "SmartFinance.Domain\SmartFinance.Domain.csproj", "{C4A76FF4-2528-4856-946E-655B70638D1A}"
@@ -21,6 +23,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.API", "SmartFinance.API\SmartFinance.API.csproj", "{CEE85479-89C9-4771-BCAC-29AE5DC197C7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Domain.Shared", "SmartFinance.Domain.Shared\SmartFinance.Domain.Shared.csproj", "{F1227193-A07F-4553-B0D4-213D5BC5D287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartFinance.Application.Contracts", "SmartFinance.Application.Contracts\SmartFinance.Application.Contracts.csproj", "{C6EF39E0-BB2E-43F8-9A92-481D212B554D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +52,10 @@ Global
 		{F1227193-A07F-4553-B0D4-213D5BC5D287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1227193-A07F-4553-B0D4-213D5BC5D287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1227193-A07F-4553-B0D4-213D5BC5D287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6EF39E0-BB2E-43F8-9A92-481D212B554D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6EF39E0-BB2E-43F8-9A92-481D212B554D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6EF39E0-BB2E-43F8-9A92-481D212B554D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6EF39E0-BB2E-43F8-9A92-481D212B554D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

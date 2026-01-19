@@ -35,5 +35,10 @@ namespace SmartFinance.Infrastructure.Data
 
             return await query.ToListAsync();
         }
+
+        public IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            return _dbContext.Set<TEntity>().Where(predicate).AsQueryable();
+        }
     }
 }

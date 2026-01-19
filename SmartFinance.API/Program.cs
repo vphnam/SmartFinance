@@ -1,5 +1,6 @@
 using System;
 using SmartFinance.Infrastructure;
+using SmartFinance.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 // Custom service
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplicationCoreService();
 
 
 var app = builder.Build();

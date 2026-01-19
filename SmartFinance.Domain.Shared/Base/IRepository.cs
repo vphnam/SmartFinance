@@ -14,5 +14,7 @@ namespace SmartFinance.Domain.Shared.Base
 
         Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate = null,
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
+
+        IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate = null);
     }
 }
