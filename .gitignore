@@ -53,3 +53,5 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 /.vs
+/SmartFinance.Application.Contracts/SmartFinance.Application.Contracts.csproj
+/SmartFinance.API/SmartFinance.API.csproj.user
