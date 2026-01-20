@@ -30,7 +30,7 @@ namespace SmartFinance.API.Middlewares
                 context.Request.Path,
                 string.IsNullOrWhiteSpace(body) ? "<empty>" : body
             );
-
+            
             // Reset stream position so controller can read it
             context.Request.Body.Position = 0;
 
