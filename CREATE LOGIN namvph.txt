@@ -1,0 +1,18 @@
+CREATE LOGIN namvph 
+WITH PASSWORD = 'HzQ1Lmku53s1!'; 
+
+ALTER LOGIN namvph ENABLE;
+
+USE SmartFinance; 
+GO 
+
+CREATE USER namvph 
+
+FOR LOGIN namvph; 
+GRANT CONNECT TO namvph; 
+
+ALTER LOGIN namvph ENABLE; 
+
+ALTER ROLE db_ddladmin ADD MEMBER namvph; 
+ALTER ROLE db_datareader ADD MEMBER namvph; 
+ALTER ROLE db_datawriter ADD MEMBER namvph; 
