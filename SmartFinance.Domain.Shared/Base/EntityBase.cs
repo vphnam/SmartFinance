@@ -17,6 +17,10 @@ namespace SmartFinance.Domain.Shared.Base
         public IReadOnlyCollection<IDomainEvent> DomainEvents
             => _domainEvents.AsReadOnly();
 
+        protected EntityBase()
+        {
+        }
+
         protected EntityBase(TId id)
         {
             Id = id;

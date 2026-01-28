@@ -1,14 +1,17 @@
 CREATE LOGIN namvph 
-WITH PASSWORD = 'HzQ1Lmku53s1!'; 
+WITH PASSWORD = '1'; 
 
 ALTER LOGIN namvph ENABLE;
+
+CREATE DATABASE SmartFinance;
+GO
 
 USE SmartFinance; 
 GO 
 
-CREATE USER namvph 
+CREATE USER namvph
+FOR LOGIN namvph
 
-FOR LOGIN namvph; 
 GRANT CONNECT TO namvph; 
 
 ALTER LOGIN namvph ENABLE; 
