@@ -9,26 +9,31 @@ using System.Threading.Tasks;
 
 namespace SmartFinance.Infrastructure.Configurations
 {
-    public class CustomerConfiguration : EntityBaseConfiguration<Customer, Guid>
+    public class PersonalCustomerConfiguration : EntityBaseConfiguration<Customer, Guid>
     {
         public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Customer> builder)
         {
             base.Configure(builder);
-            var tableName = "Customers";
+            var tableName = "Customer";
 
             builder.ToTable(tableName);
 
             builder.HasIndex(e => e.CustomerNumber)
                   .IsUnique();
 
-            builder.Property(e => e.CustomerName)
-            .HasMaxLength(200);
+            builder.Property(e => e.CustomerNumber)
+                .HasMaxLength(20);
 
             builder.Property(e => e.PhoneNumber)
             .HasMaxLength(20);
 
             builder.Property(e => e.EmailAddress)
             .HasMaxLength(100);
+
+            builder.Property(e => e.BrokerId)
+            .HasMaxLength(20);
+
+            builder.Property<Boolean>("IsActive");
 
             // Shadow properties (audit fields)
             builder.Property<DateTime>("CreatedDate")

@@ -10,7 +10,7 @@ using SmartFinance.Infrastructure.DatabaseContext;
 
 namespace SmartFinance.Infrastructure.Migrations
 {
-    [DbContext(typeof(SFDbContext))]
+    [DbContext(typeof(CustomerDbContext))]
     partial class SFDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

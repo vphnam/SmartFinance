@@ -11,7 +11,7 @@ using SmartFinance.Infrastructure.DatabaseContext;
 
 namespace SmartFinance.Infrastructure.Migrations
 {
-    [DbContext(typeof(SFDbContext))]
+    [DbContext(typeof(CustomerDbContext))]
     [Migration("20260117163845_InitialCreate")]
     partial class InitialCreate
     {

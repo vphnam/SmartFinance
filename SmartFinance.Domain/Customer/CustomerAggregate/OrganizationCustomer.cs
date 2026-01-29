@@ -8,5 +8,13 @@ namespace SmartFinance.Domain.Customer.CustomerAggregate
 {
     public class OrganizationCustomer: Customer
     {
+        public string OrganizationName { get; set; }
+        public string ContactPerson { get; set; }
+
+        public OrganizationCustomer(string customerNumber, string phoneNumber, string emailAddress, string brokerId, string organizationName, string contactPerson) : base(customerNumber, phoneNumber, emailAddress, brokerId)
+        {
+            OrganizationName = customerNumber;
+            ContactPerson = contactPerson;
+        }
     }
 }

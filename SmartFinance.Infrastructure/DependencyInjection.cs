@@ -24,9 +24,9 @@ namespace SmartFinance.Infrastructure
 
         private static void RegisterDbContext(IServiceCollection service, IConfiguration configuration)
         {
-            service.AddDbContext<SFDbContext>(options => 
+            service.AddDbContext<CustomerDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("CustomerDbConnection"), 
-                b => b.MigrationsAssembly(typeof(SFDbContext).Assembly.FullName)));
+                b => b.MigrationsAssembly(typeof(CustomerDbContext).Assembly.FullName)));
         }
     }
 }
