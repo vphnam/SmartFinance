@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartFinance.Domain.Customer.CustomerAggregate
 {
-    public class OrganizationCustomer: Customer
+    public sealed class OrganizationCustomer: Customer
     {
         public string OrganizationName { get; set; }
         public string ContactPerson { get; set; }

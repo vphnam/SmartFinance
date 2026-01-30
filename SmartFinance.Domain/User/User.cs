@@ -9,14 +9,16 @@ namespace SmartFinance.Domain.User
 {
     public class User: EntityBase<Guid>
     {
+        public string ReferenceId { get; set; }
         public string UserName { get;set; }
         public string EmailAddress { get; set; }
         public string PhoneNumber { get; set; }
         public string PasswordHash { get; set; }
         public bool IsActive { get; set; }
 
-        public User(string userName, string email, string phoneNumber): base(Guid.NewGuid())
+        public User(string referenceId, string userName, string email, string phoneNumber): base(Guid.NewGuid())
         {
+            ReferenceId = referenceId;
             UserName = userName;
             EmailAddress = email;
             PhoneNumber = phoneNumber;
