@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartFinance.Domain.Customer.CustomerAggregate;
 using SmartFinance.Domain.User;
 using System;
 using System.Collections.Generic;

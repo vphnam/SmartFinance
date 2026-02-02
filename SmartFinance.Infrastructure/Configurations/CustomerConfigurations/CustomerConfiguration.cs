@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartFinance.Domain.Customer.CustomerAggregate;
-using SmartFinance.Domain.Shared.Base;
 using SmartFinance.Infrastructure.Configurations.Base;
 using System;
 using System.Collections.Generic;
@@ -8,29 +7,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartFinance.Infrastructure.Configurations
+namespace SmartFinance.Infrastructure.Configurations.CustomerConfigurations
 {
-    public class PersonalCustomerConfiguration : EntityBaseConfiguration<PersonalCustomer, Guid>
+    public class CustomerConfiguration : EntityBaseConfiguration<Customer, Guid>
     {
-        public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<PersonalCustomer> builder)
+        public override void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Customer> builder)
         {
             base.Configure(builder);
-            var tableName = "PersonalCustomer";
+            var tableName = "Customer";
+
             builder.ToTable(tableName);
+
             builder.HasIndex(e => e.CustomerNumber)
                   .IsUnique();
+
             builder.Property(e => e.CustomerNumber)
                 .HasMaxLength(20);
-            builder.Property(e => e.CustomerName)
-                .HasMaxLength(200);
+
             builder.Property(e => e.PhoneNumber)
             .HasMaxLength(20);
+
             builder.Property(e => e.EmailAddress)
             .HasMaxLength(100);
+
             builder.Property(e => e.BrokerId)
             .HasMaxLength(20);
-            builder.Property<Boolean>("IsActive");
-            
+
+            builder.Property<bool>("IsActive");
+
             // Shadow properties (audit fields)
             builder.Property<DateTime>("CreatedDate")
             .IsRequired()

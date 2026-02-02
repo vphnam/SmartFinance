@@ -27,6 +27,10 @@ namespace SmartFinance.Infrastructure
             service.AddDbContext<CustomerDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("CustomerDbConnection"), 
                 b => b.MigrationsAssembly(typeof(CustomerDbContext).Assembly.FullName)));
+
+            service.AddDbContext<UserDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("UserDbConnection"),
+                b => b.MigrationsAssembly(typeof(UserDbContext).Assembly.FullName)));
         }
     }
 }

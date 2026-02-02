@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SmartFinance.Infrastructure.DatabaseContext;
 
@@ -11,9 +12,11 @@ using SmartFinance.Infrastructure.DatabaseContext;
 namespace SmartFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
-    partial class SFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260202095637_InitialCustomerSchema3")]
+    partial class InitialCustomerSchema3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

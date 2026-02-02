@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartFinance.Infrastructure.Configurations
+namespace SmartFinance.Infrastructure.Configurations.IdentityConfigurations
 {
     public class UserConfiguration : EntityBaseConfiguration<User, Guid>
     {
@@ -33,7 +33,7 @@ namespace SmartFinance.Infrastructure.Configurations
                 .HasMaxLength(256)
                 .IsRequired();
 
-            builder.Property<Boolean>(e => e.IsActive)
+            builder.Property(e => e.IsActive)
                 .IsRequired();
         }
     }
