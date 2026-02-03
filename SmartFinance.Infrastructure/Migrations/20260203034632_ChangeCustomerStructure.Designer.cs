@@ -12,8 +12,8 @@ using SmartFinance.Infrastructure.DatabaseContext;
 namespace SmartFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
-    [Migration("20260202095637_InitialCustomerSchema3")]
-    partial class InitialCustomerSchema3
+    [Migration("20260203034632_ChangeCustomerStructure")]
+    partial class ChangeCustomerStructure
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,15 +48,35 @@ namespace SmartFinance.Infrastructure.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
+                    b.Property<string>("CustomerType")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("ReferenceId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("TaxNumber")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -72,55 +92,6 @@ namespace SmartFinance.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Customer", (string)null);
-
-                    b.UseTptMappingStrategy();
-                });
-
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.OrganizationCustomer", b =>
-                {
-                    b.HasBaseType("SmartFinance.Domain.Customer.CustomerAggregate.Customer");
-
-                    b.Property<string>("ContactPerson")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("OrganizationName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.ToTable("OrganizationCustomer", (string)null);
-                });
-
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.PersonalCustomer", b =>
-                {
-                    b.HasBaseType("SmartFinance.Domain.Customer.CustomerAggregate.Customer");
-
-                    b.Property<string>("CustomerName")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.ToTable("PersonalCustomer", (string)null);
-                });
-
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.OrganizationCustomer", b =>
-                {
-                    b.HasOne("SmartFinance.Domain.Customer.CustomerAggregate.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("SmartFinance.Domain.Customer.CustomerAggregate.OrganizationCustomer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.PersonalCustomer", b =>
-                {
-                    b.HasOne("SmartFinance.Domain.Customer.CustomerAggregate.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("SmartFinance.Domain.Customer.CustomerAggregate.PersonalCustomer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

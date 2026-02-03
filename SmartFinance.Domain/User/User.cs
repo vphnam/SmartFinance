@@ -16,12 +16,13 @@ namespace SmartFinance.Domain.User
         public string PasswordHash { get; set; }
         public bool IsActive { get; set; }
 
-        public User(string referenceId, string userName, string email, string phoneNumber): base(Guid.NewGuid())
+        internal User(string referenceId, string userName, string emailAddress, string phoneNumber, string passwordHash) : base(Guid.NewGuid())
         {
             ReferenceId = referenceId;
             UserName = userName;
-            EmailAddress = email;
+            EmailAddress = emailAddress;
             PhoneNumber = phoneNumber;
+            PasswordHash = passwordHash;
             IsActive = true;
         }
     }

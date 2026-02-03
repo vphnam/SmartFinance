@@ -16,8 +16,6 @@ namespace SmartFinance.Infrastructure.DatabaseContext
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
-        public virtual DbSet<OrganizationCustomer> OrganizationCustomers { get; set; }
-        public virtual DbSet<PersonalCustomer> PersonalCustomers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -24,11 +24,23 @@ namespace SmartFinance.Infrastructure.Configurations.CustomerConfigurations
             builder.Property(e => e.CustomerNumber)
                 .HasMaxLength(20);
 
+            builder.Property(e => e.FullName)
+                .HasMaxLength(200);
+
             builder.Property(e => e.PhoneNumber)
             .HasMaxLength(20);
 
             builder.Property(e => e.EmailAddress)
             .HasMaxLength(100);
+
+            builder.Property(e => e.TaxNumber)
+            .HasMaxLength(20);
+
+            builder.Property(e => e.CustomerType)
+            .HasMaxLength(20);
+
+            builder.Property(e => e.ReferenceId)
+            .HasMaxLength(20);
 
             builder.Property(e => e.BrokerId)
             .HasMaxLength(20);

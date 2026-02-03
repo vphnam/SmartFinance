@@ -25,7 +25,8 @@ namespace SmartFinance.Infrastructure.DatabaseContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(
-            typeof(UserDbContext).Assembly);
+            typeof(UserDbContext).Assembly,
+            type => type.Namespace!.Contains("IdentityConfigurations"));
         }
     }
 }
