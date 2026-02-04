@@ -16,6 +16,44 @@ namespace SmartFinance.Infrastructure.Data
         {
             _dbContext = dbContext;
         }
+
+        public async Task<TEntity> CreateAsync(TEntity entity)
+        {
+            await _dbContext.Set<TEntity>().AddAsync(entity);
+
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Update(entity);
+
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public async Task<TEntity> DeleteAsync(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Remove(entity);
+
+            await _dbContext.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<TEntity> FindAsync(string id)
+        {
+            var obj = await _dbContext.Set<TEntity>().FindAsync(id);
+            if (obj == null)
+            {
+                return null;
+            }
+            else
+                return obj;
+        }
+
         public async Task<IReadOnlyList<TEntity>> GetAllAsync()
         {
             return await _dbContext.Set<TEntity>().ToListAsync();
@@ -40,5 +78,15 @@ namespace SmartFinance.Infrastructure.Data
         {
             return _dbContext.Set<TEntity>().Where(predicate).AsQueryable();
         }
-    }
+
+        public async Task<bool> IsAnyAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbContext.Set<TEntity>().AnyAsync(predicate);
+        }
+
+        public async Task<TEntity> FindByExpressionAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
+        }
+    }        
 }
