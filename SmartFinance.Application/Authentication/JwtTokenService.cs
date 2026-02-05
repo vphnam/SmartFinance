@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace SmartFinance.Application.Authentication
         {
             _configuration = configuration;
         }
-        public AuthResponseDto GenerateToken(User user)
+        public AuthResponseDto GenerateToken(User user, List<string> roles)
         {
             var jwt = _configuration.GetSection("Jwt");
 
@@ -27,9 +28,14 @@ namespace SmartFinance.Application.Authentication
             {
                 new System.Security.Claims.Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
                 new System.Security.Claims.Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
-                new System.Security.Claims.Claim(JwtRegisteredClaimNames.Email, user.EmailAddress)
+                new System.Security.Claims.Claim(JwtRegisteredClaimNames.Email, user.EmailAddress),
             };
 
+            var roleClaims = roles.Select(n => new Claim(ClaimTypes.Role, n));
+
+
+            claims = claims.Concat(roleClaims).ToArray();
+            var test = jwt["Key"];
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt["Key"]));
 
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

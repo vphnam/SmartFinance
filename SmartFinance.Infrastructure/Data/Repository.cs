@@ -61,7 +61,7 @@ namespace SmartFinance.Infrastructure.Data
 
         public async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await _dbContext.Set<TEntity>().Where(predicate).ToListAsync();
+            return await _dbContext.Set<TEntity>().Where(predicate).AsNoTracking().ToListAsync();
         }
 
         public async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
@@ -69,9 +69,9 @@ namespace SmartFinance.Infrastructure.Data
             var query = _dbContext.Set<TEntity>().Where(predicate);
 
             if (orderBy != null)
-                return await orderBy(query).ToListAsync();
+                return await orderBy(query).AsNoTracking().ToListAsync();
 
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> predicate = null)

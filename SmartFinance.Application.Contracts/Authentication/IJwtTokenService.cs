@@ -10,6 +10,6 @@ namespace SmartFinance.Application.Contracts.Authentication
 {
     public interface IJwtTokenService
     {
-        AuthResponseDto GenerateToken(User user);
+        AuthResponseDto GenerateToken(User user, List<string> roles);
     }
 }

@@ -23,6 +23,7 @@ namespace SmartFinance.Infrastructure
         {
             service.AddScoped<ICustomerRepository, CustomerRepository>();
             service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IUserRoleRepository, UserRoleRepository>();
         }
 
         private static void RegisterDbContext(IServiceCollection service, IConfiguration configuration)

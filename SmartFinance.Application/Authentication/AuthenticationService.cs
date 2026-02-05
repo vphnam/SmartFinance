@@ -1,4 +1,5 @@
-﻿using SmartFinance.Application.Contracts.Authentication;
+﻿using Microsoft.EntityFrameworkCore;
+using SmartFinance.Application.Contracts.Authentication;
 using SmartFinance.Application.Contracts.Authentication.Dto;
 using SmartFinance.Domain.User;
 using System;
@@ -12,11 +13,16 @@ namespace SmartFinance.Application.Authentication
     public class AuthenticationService : IAuthService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserRoleRepository _userRoleRepository;
         private readonly IPasswordHasher _hash;
         private readonly IJwtTokenService _jwtTokenService;
-        public AuthenticationService(IUserRepository userRepository, IPasswordHasher hash, IJwtTokenService jwtTokenService)
+        public AuthenticationService(IUserRepository userRepository, 
+                                     IUserRoleRepository userRoleRepository,
+                                     IPasswordHasher hash, 
+                                     IJwtTokenService jwtTokenService)
         {
             _userRepository = userRepository;
+            _userRoleRepository = userRoleRepository;
             _hash = hash;
             _jwtTokenService = jwtTokenService;
         }
@@ -31,10 +37,12 @@ namespace SmartFinance.Application.Authentication
 
             if (_hash.VerifyPassword(user.PasswordHash, request.Password))
             {
+                var roles = await _userRoleRepository.GetRolesOfUser(userId: user.Id);
+
                 return new AuthResponseDto
                 {
-                    AccessToken = _jwtTokenService.GenerateToken(user).AccessToken,
-                    ExpiresAt = _jwtTokenService.GenerateToken(user).ExpiresAt
+                    AccessToken = _jwtTokenService.GenerateToken(user, roles).AccessToken,
+                    ExpiresAt = _jwtTokenService.GenerateToken(user, roles).ExpiresAt
                 };
             }
             else
