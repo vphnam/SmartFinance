@@ -6,7 +6,7 @@ import { MainLayoutComponent } from './shared/layouts/components/main-layout-com
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AuthLayoutComponent, MainLayoutComponent, NavbarComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

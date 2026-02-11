@@ -6,19 +6,22 @@
   <body class="h-full">
   ```
 -->
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 backdrop-blur-xs bg-black/20 rounded-xl">
   <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-    <img src="assets/logo.png" alt="logo" class="mx-auto sm:w-50 sm:max-w-sm w-auto" />
+    <img src="assets/logo_auth.png" alt="logo" class="mx-auto w-60 h-auto object-contain" />
     <h2 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-black">Register your account</h2>
   </div>
 
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form action="#" method="POST" class="space-y-6">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <div>
         <label for="email" class="block text-sm/6 font-medium text-black-100">Email address</label>
         <div class="mt-2">
-          <input id="email" type="email" name="email" required autocomplete="email" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <input id="email" type="email" formControlName="emailAddress" name="email" required autocomplete="email" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
+        <!-- <label class="text-sm/6 text-red-600" *ngIf="registerForm.get('emailAddress')?.touched && registerForm.get('emailAddress')?.invalid">
+             Please enter a valid email address.
+           </label> -->
       </div>
 
       <div>
