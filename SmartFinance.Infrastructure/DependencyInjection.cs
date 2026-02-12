@@ -2,7 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SmartFinance.Domain.Customer.CustomerAggregate;
+using SmartFinance.Domain.User;
 using SmartFinance.Infrastructure.Data.Customer;
+using SmartFinance.Infrastructure.Data.User;
 using SmartFinance.Infrastructure.DatabaseContext;
 
 namespace SmartFinance.Infrastructure
@@ -20,13 +22,19 @@ namespace SmartFinance.Infrastructure
         private static void RegisterRepository(IServiceCollection service)
         {
             service.AddScoped<ICustomerRepository, CustomerRepository>();
+            service.AddScoped<IUserRepository, UserRepository>();
+            service.AddScoped<IUserRoleRepository, UserRoleRepository>();
         }
 
         private static void RegisterDbContext(IServiceCollection service, IConfiguration configuration)
         {
-            service.AddDbContext<SFDbContext>(options => 
+            service.AddDbContext<CustomerDbContext>(options => 
                 options.UseSqlServer(configuration.GetConnectionString("CustomerDbConnection"), 
-                b => b.MigrationsAssembly(typeof(SFDbContext).Assembly.FullName)));
+                b => b.MigrationsAssembly(typeof(CustomerDbContext).Assembly.FullName)));
+
+            service.AddDbContext<UserDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("UserDbConnection"),
+                b => b.MigrationsAssembly(typeof(UserDbContext).Assembly.FullName)));
         }
     }
 }

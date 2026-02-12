@@ -1,0 +1,28 @@
+CREATE LOGIN namvph 
+WITH PASSWORD = '1'; 
+
+ALTER LOGIN namvph ENABLE;
+
+CREATE DATABASE SmartFinance;
+GO
+
+USE SmartFinance; 
+GO 
+
+CREATE USER namvph
+FOR LOGIN namvph
+
+GRANT CONNECT TO namvph; 
+
+ALTER LOGIN namvph ENABLE; 
+
+ALTER ROLE db_ddladmin ADD MEMBER namvph; 
+ALTER ROLE db_datareader ADD MEMBER namvph; 
+ALTER ROLE db_datawriter ADD MEMBER namvph; 
+
+
+
+Add-Migration InitialCreate -Context CustomerDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
+Add-Migration SetUpIdentity -Context UserDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
+Update-Database -Context CustomerDbContext
+Update-Database -Context UserDbContext

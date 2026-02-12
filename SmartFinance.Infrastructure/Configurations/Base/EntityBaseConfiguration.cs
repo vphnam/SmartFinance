@@ -19,7 +19,8 @@ namespace SmartFinance.Infrastructure.Configurations.Base
             builder.HasKey(e => e.Id);
             builder.Property(e => e.Id)
                    .HasColumnName(idColumnName)
-                   .IsRequired();
+                   .IsRequired()
+                   .HasMaxLength(36);
         }
     }
 }

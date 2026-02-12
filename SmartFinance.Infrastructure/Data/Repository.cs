@@ -16,6 +16,44 @@ namespace SmartFinance.Infrastructure.Data
         {
             _dbContext = dbContext;
         }
+
+        public async Task<TEntity> CreateAsync(TEntity entity)
+        {
+            await _dbContext.Set<TEntity>().AddAsync(entity);
+
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public async Task<TEntity> UpdateAsync(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Update(entity);
+
+            await _dbContext.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public async Task<TEntity> DeleteAsync(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Remove(entity);
+
+            await _dbContext.SaveChangesAsync();
+            return entity;
+        }
+
+        public async Task<TEntity> FindAsync(string id)
+        {
+            var obj = await _dbContext.Set<TEntity>().FindAsync(id);
+            if (obj == null)
+            {
+                return null;
+            }
+            else
+                return obj;
+        }
+
         public async Task<IReadOnlyList<TEntity>> GetAllAsync()
         {
             return await _dbContext.Set<TEntity>().ToListAsync();
@@ -23,7 +61,7 @@ namespace SmartFinance.Infrastructure.Data
 
         public async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            return await _dbContext.Set<TEntity>().Where(predicate).ToListAsync();
+            return await _dbContext.Set<TEntity>().Where(predicate).AsNoTracking().ToListAsync();
         }
 
         public async Task<IReadOnlyList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
@@ -31,14 +69,24 @@ namespace SmartFinance.Infrastructure.Data
             var query = _dbContext.Set<TEntity>().Where(predicate);
 
             if (orderBy != null)
-                return await orderBy(query).ToListAsync();
+                return await orderBy(query).AsNoTracking().ToListAsync();
 
-            return await query.ToListAsync();
+            return await query.AsNoTracking().ToListAsync();
         }
 
         public IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> predicate = null)
         {
             return _dbContext.Set<TEntity>().Where(predicate).AsQueryable();
         }
-    }
+
+        public async Task<bool> IsAnyAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbContext.Set<TEntity>().AnyAsync(predicate);
+        }
+
+        public async Task<TEntity> FindByExpressionAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _dbContext.Set<TEntity>().FirstOrDefaultAsync(predicate);
+        }
+    }        
 }

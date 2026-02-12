@@ -5,7 +5,15 @@ using SmartFinance.Infrastructure;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
-
+Console.WriteLine("---- CONFIG DUMP ----");
+foreach (var kv in builder.Configuration.AsEnumerable())
+{
+    if (kv.Key.Contains("Jwt", StringComparison.OrdinalIgnoreCase))
+    {
+        Console.WriteLine($"{kv.Key} = {kv.Value}");
+    }
+}
+Console.WriteLine("---------------------");
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -25,6 +33,8 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 var app = builder.Build();
+app.UseDeveloperExceptionPage();
+Console.WriteLine($"ENV = {builder.Environment.EnvironmentName}");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -37,6 +47,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseMiddleware<RequestLoggingMiddleware>();
+app.UseMiddleware<ExceptionErrorHandlingMiddleware>();
 app.UseAuthorization();
 
 app.MapControllers();

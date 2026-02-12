@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SmartFinance.Infrastructure.Data.Customer
 {
-    public class CustomerRepository : Repository<SmartFinance.Domain.Customer.CustomerAggregate.Customer, SFDbContext>, ICustomerRepository
+    public class CustomerRepository : Repository<SmartFinance.Domain.Customer.CustomerAggregate.Customer, CustomerDbContext>, ICustomerRepository
     {
-        public CustomerRepository(SFDbContext dbContext) : base(dbContext)
+        public CustomerRepository(CustomerDbContext dbContext) : base(dbContext)
         {
         }
     }

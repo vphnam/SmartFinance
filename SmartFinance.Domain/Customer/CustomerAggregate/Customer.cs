@@ -8,15 +8,36 @@ using System.Threading.Tasks;
 
 namespace SmartFinance.Domain.Customer.CustomerAggregate
 {
-    public abstract class Customer: EntityBase<Guid>, IAggregateRoot
+    public class Customer: EntityBase<Guid>, IAggregateRoot
     {
         public string CustomerNumber { get; set; }
-
-        public string CustomerName { get; set; }
+        public string FullName { get; set; }
         public string PhoneNumber { get; set; }
         public string EmailAddress { get; set; }
+        public string TaxNumber { get; set; }
+        public string CustomerType { get; set; }
+        public string ReferenceId { get; set; }
         public string BrokerId { get; set; }
         public bool IsActive { get; set; }
+
+        public Customer(string customerNumber, 
+                        string fullName,
+                        string phoneNumber, 
+                        string emailAddress, 
+                        string taxNumber,
+                        string customerType,
+                        string referenceId,
+                        string brokerId) : base(Guid.NewGuid())
+        {
+            CustomerNumber = customerNumber;
+            FullName = fullName;
+            PhoneNumber = phoneNumber;
+            EmailAddress = emailAddress;
+            TaxNumber = taxNumber;
+            ReferenceId = referenceId;
+            BrokerId = brokerId;
+            IsActive = true;
+        }
 
     }
 }

@@ -16,5 +16,13 @@ namespace SmartFinance.Domain.Shared.Base
                                         Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null);
 
         IQueryable<T> GetQueryable(Expression<Func<T, bool>> predicate = null);
+
+        Task<T> FindAsync(string id);
+        Task<T> FindByExpressionAsync(Expression<Func<T, bool>> predicate);
+        Task<T> CreateAsync(T entity);
+        Task<T> UpdateAsync(T entity);
+        Task<T> DeleteAsync(T entity);
+        Task<bool> IsAnyAsync(Expression<Func<T, bool>> predicate);
+
     }
 }

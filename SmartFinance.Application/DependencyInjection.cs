@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SmartFinance.Application.Authentication;
+using SmartFinance.Application.Contracts.Authentication;
 using SmartFinance.Application.Contracts.Customers;
 using SmartFinance.Application.Customer;
 using System;
@@ -14,6 +16,11 @@ namespace SmartFinance.Application
         public static IServiceCollection AddApplicationCoreService(this IServiceCollection services)
         {
             services.AddScoped<ICustomerService, CustomerService>();
+
+            services.AddScoped<IAuthService, AuthenticationService>();
+            services.AddScoped<IJwtTokenService, JwtTokenService>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+
             return services;
         }
     }

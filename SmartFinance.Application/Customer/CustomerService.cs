@@ -25,7 +25,6 @@ namespace SmartFinance.Application.Customer
             {
                 CustomerId = c.Id,
                 CustomerNumber = c.CustomerNumber,
-                CustomerName = c.CustomerName,
                 PhoneNumber = c.PhoneNumber,
                 EmailAddress = c.EmailAddress
             }).ToListAsync();
