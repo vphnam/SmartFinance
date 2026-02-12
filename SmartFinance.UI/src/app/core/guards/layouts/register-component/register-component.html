@@ -15,38 +15,67 @@
   <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-6">
       <div>
-        <label for="email" class="block text-sm/6 font-medium text-black-100">Email address</label>
+        <label for="email" class="block text-sm/6 font-medium text-black-100">Email address <span class="text-red-600">*</span></label>
         <div class="mt-2">
           <input id="email" type="email" formControlName="emailAddress" name="email" required autocomplete="email" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
-        <!-- <label class="text-sm/6 text-red-600" *ngIf="registerForm.get('emailAddress')?.touched && registerForm.get('emailAddress')?.invalid">
-             Please enter a valid email address.
-           </label> -->
+        @if (formValidator.hasError(registerForm.get('emailAddress')!))
+        {
+          <div class="mt-2">
+            <label class="text-sm/6 text-red-600">
+              {{ formValidator.getErrorMessages(registerForm.get('emailAddress')!) }}
+            </label>
+          </div>
+        }
       </div>
 
       <div>
-        <label for="username" class="block text-sm/6 font-medium text-black-100">User name</label>
+        <label for="userName" class="block text-sm/6 font-medium text-black-100">User name <span class="text-red-600">*</span></label>
         <div class="mt-2">
-          <input id="username" type="text" name="username" required autocomplete="username" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <input id="userName" type="text" formControlName="userName" name="userName" required autocomplete="userName" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
+        @if (formValidator.hasError(registerForm.get('userName')!))
+        {
+          <div class="mt-2">
+            <label class="text-sm/6 text-red-600">
+              {{ formValidator.getErrorMessages(registerForm.get('userName')!) }}
+            </label>
+          </div>
+        }
       </div>
 
       <div>
-        <label for="phone" class="block text-sm/6 font-medium text-black-100">Phone number</label>
+        <label for="phoneNumber" class="block text-sm/6 font-medium text-black-100">Phone number <span class="text-red-600">*</span></label>
         <div class="mt-2">
-          <input id="phone" type="tel" name="phone" required autocomplete="phone" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <input id="phoneNumber" type="tel" formControlName="phoneNumber" name="phoneNumber" required autocomplete="phoneNumber" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
+        @if (formValidator.hasError(registerForm.get('phoneNumber')!))
+        {
+          <div class="mt-2">
+            <label class="text-sm/6 text-red-600">
+              {{ formValidator.getErrorMessages(registerForm.get('phoneNumber')!) }}
+            </label>
+          </div>
+        }
       </div>
 
       <div>
-        <label for="broker-number" class="block text-sm/6 font-medium text-black-100">Broker number</label>
+        <label for="brokerNumber" class="block text-sm/6 font-medium text-black-100">Broker number</label>
         <div class="mt-2">
-          <input id="broker-number" type="tel" name="broker-number" required autocomplete="broker-number" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
+          <input id="brokerNumber" type="tel" formControlName="brokerNumber" name="brokerNumber" required autocomplete="brokerNumber" class="block w-full border border-black rounded-md bg-white/5 px-3 py-1.5 text-base text-black outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
+        @if (formValidator.hasError(registerForm.get('brokerNumber')!))
+        {
+          <div class="mt-2">
+            <label class="text-sm/6 text-red-600">
+              {{ formValidator.getErrorMessages(registerForm.get('brokerNumber')!) }}
+            </label>
+          </div>
+        }
       </div>
 
       <div>
-        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Register</button>
+        <button type="submit" (click)="onSubmit()" class="flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">Register</button>
       </div>
     </form>
   </div>
