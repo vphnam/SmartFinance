@@ -22,7 +22,7 @@ namespace SmartFinance.Infrastructure.Configurations.CustomerConfigurations
                   .IsUnique();
 
             builder.Property(e => e.CustomerNumber)
-                .HasMaxLength(20);
+                .HasMaxLength(10);
 
             builder.Property(e => e.FullName)
                 .HasMaxLength(200);

@@ -10,6 +10,10 @@ export class FormValidatorService {
         return !!(control && control.errors && control.touched);
     }
 
+    hasErrorName(control: AbstractControl, errorName: string): boolean {
+        return !!(control && control.errors && control.touched && control.errors?.[errorName]);
+    }
+
     getErrorMessages(control: AbstractControl): string | null{
         if(!control || !control.errors || !control.touched)
             return null;
@@ -33,6 +37,8 @@ export class FormValidatorService {
                 return `Maximum length is ${errorValue.requiredLength} characters.`;
             case 'pattern':
                 return 'The input format is invalid.';
+            case 'passwordMismatch':
+                return 'The passwords do not match.';
         }
         return '';
     }

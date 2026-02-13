@@ -5,18 +5,21 @@ using SmartFinance.Infrastructure;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
-Console.WriteLine("---- CONFIG DUMP ----");
-foreach (var kv in builder.Configuration.AsEnumerable())
-{
-    if (kv.Key.Contains("Jwt", StringComparison.OrdinalIgnoreCase))
-    {
-        Console.WriteLine($"{kv.Key} = {kv.Value}");
-    }
-}
-Console.WriteLine("---------------------");
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:4200")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod()
+                  .AllowCredentials();
+        });
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -45,7 +48,7 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowFrontend");
 app.UseMiddleware<RequestLoggingMiddleware>();
 app.UseMiddleware<ExceptionErrorHandlingMiddleware>();
 app.UseAuthorization();

@@ -7,7 +7,7 @@ using SmartFinance.Application.Contracts.Shared.Dto;
 namespace SmartFinance.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("auth")]
     public class AuthenticationController : ControllerBase
     {
         private readonly IAuthService _authenticationService;

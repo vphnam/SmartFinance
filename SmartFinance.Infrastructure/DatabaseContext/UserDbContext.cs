@@ -26,7 +26,7 @@ namespace SmartFinance.Infrastructure.DatabaseContext
         {
             modelBuilder.ApplyConfigurationsFromAssembly(
             typeof(UserDbContext).Assembly,
-            type => type.Namespace!.Contains("IdentityConfigurations"));
+            type => type.Namespace!.Contains("AuthConfigurations"));
         }
     }
 }

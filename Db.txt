@@ -26,3 +26,6 @@ Add-Migration InitialCreate -Context CustomerDbContext  -Project SmartFinance.In
 Add-Migration SetUpIdentity -Context UserDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
 Update-Database -Context CustomerDbContext
 Update-Database -Context UserDbContext
+
+Add-Migration AddBusinessSequences -Context IdentityDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
+Update-Database -Context IdentityDbContext

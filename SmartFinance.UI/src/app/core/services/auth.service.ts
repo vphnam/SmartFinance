@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
+import { ApiService } from './api.service';
 
 export interface AuthCredentials {
     username: string; 
@@ -14,21 +15,34 @@ export interface AuthToken {
     expiresIn: number;
 }
 
+export interface RegisterCredentials{
+    
+}
+
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = '/api/auth';
+    private apiUrl = '/auth';
     private currentUserSubject = new BehaviorSubject<any>(null);
     public currentUser$ = this.currentUserSubject.asObservable();
+    private _apiService: ApiService;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private apiServiceInstance: ApiService) {
+        this._apiService = apiServiceInstance;
         this.loadUser();
     }
 
     login(credentials: AuthCredentials): Observable<AuthToken> {
         return this.http.post<AuthToken>(`${this.apiUrl}/login`, credentials).pipe(
             tap(token => this.storeToken(token))
+        );
+    }
+
+    register(credentials: RegisterCredentials): Observable<any> {
+        console.log(`${this.apiUrl}/register`)
+        return this._apiService.post(`${this.apiUrl}/register`, credentials).pipe(
+            map(response => response)
         );
     }
 

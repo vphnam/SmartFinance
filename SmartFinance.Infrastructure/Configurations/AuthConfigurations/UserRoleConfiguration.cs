@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartFinance.Infrastructure.Configurations.IdentityConfigurations
+namespace SmartFinance.Infrastructure.Configurations.AuthConfigurations
 {
     public class UserRoleConfiguration : EntityBaseConfiguration<UserRole, Guid>
     {

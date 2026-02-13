@@ -1,4 +1,5 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { passwordMatchValidator } from "../../../../shared/validators/formGroup.validator";
 
 export class RegisterComponentForm {
 
@@ -16,9 +17,23 @@ export class RegisterComponentForm {
             validators: [Validators.required, Validators.pattern('^\\+?[1-9]\\d{1,14}$'), Validators.maxLength(20)]
         }),
         brokerNumber: new FormControl('', {
-            nonNullable: true,
-            validators: [Validators.required, Validators.minLength(5), Validators.maxLength(20)]
+            validators: [Validators.minLength(10), Validators.maxLength(20)]
         }),
+
+        password: new FormControl('', {
+            nonNullable: true,
+            validators: [Validators.required, Validators.minLength(8), Validators.maxLength(30)]
+        }),
+
+        confirmPassword: new FormControl('', {
+            nonNullable: true,
+            validators: [Validators.required, Validators.minLength(8), Validators.maxLength(30)]
+        }),
+    },
+
+    {
+        validators: passwordMatchValidator,
+        updateOn: 'change'
     });
 
     public setForm()
