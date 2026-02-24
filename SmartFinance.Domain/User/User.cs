@@ -15,6 +15,8 @@ namespace SmartFinance.Domain.User
         public string PhoneNumber { get; private set; }
         public string PasswordHash { get; private set; }
         public bool IsActive { get; private set; }
+        public string? EmailVerificationTokenHash { get; private set; }
+        public DateTime? EmailVerificationTokenExpiry { get; private set; }
 
         internal User(string referenceId, string userName, string emailAddress, string phoneNumber, string passwordHash) : base(Guid.NewGuid())
         {
@@ -23,7 +25,7 @@ namespace SmartFinance.Domain.User
             EmailAddress = emailAddress;
             PhoneNumber = phoneNumber;
             PasswordHash = passwordHash;
-            IsActive = true;
+            IsActive = false;
         }
 
         public static User Create(string referenceId, string userName, string emailAddress, string phoneNumber, string passwordHash)
@@ -35,6 +37,19 @@ namespace SmartFinance.Domain.User
                 phoneNumber: phoneNumber,
                 passwordHash: passwordHash
             );
+        }
+
+        public void SetEmailVerificationToken(string tokenHash, DateTime expiry)
+        {
+            EmailVerificationTokenHash = tokenHash;
+            EmailVerificationTokenExpiry = expiry;
+        }
+
+        public void VerifyEmail()
+        {
+            IsActive = true;
+            EmailVerificationTokenHash = null;
+            EmailVerificationTokenExpiry = null;
         }
     }
 }

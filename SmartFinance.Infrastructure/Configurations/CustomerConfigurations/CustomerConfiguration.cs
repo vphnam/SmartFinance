@@ -39,10 +39,7 @@ namespace SmartFinance.Infrastructure.Configurations.CustomerConfigurations
             builder.Property(e => e.CustomerType)
             .HasMaxLength(20);
 
-            builder.Property(e => e.ReferenceId)
-            .HasMaxLength(20);
-
-            builder.Property(e => e.BrokerId)
+            builder.Property(e => e.MerchantId)
             .HasMaxLength(20);
 
             builder.Property<bool>("IsActive");

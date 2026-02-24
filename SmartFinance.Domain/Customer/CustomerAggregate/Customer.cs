@@ -16,8 +16,7 @@ namespace SmartFinance.Domain.Customer.CustomerAggregate
         public string EmailAddress { get; set; }
         public string TaxNumber { get; set; }
         public string CustomerType { get; set; }
-        public string ReferenceId { get; set; }
-        public string BrokerId { get; set; }
+        public string MerchantId { get; set; }
         public bool IsActive { get; set; }
 
         public Customer(string customerNumber, 
@@ -26,16 +25,15 @@ namespace SmartFinance.Domain.Customer.CustomerAggregate
                         string emailAddress, 
                         string taxNumber,
                         string customerType,
-                        string referenceId,
-                        string brokerId) : base(Guid.NewGuid())
+                        string merchantId) : base(Guid.NewGuid())
         {
             CustomerNumber = customerNumber;
             FullName = fullName;
             PhoneNumber = phoneNumber;
             EmailAddress = emailAddress;
             TaxNumber = taxNumber;
-            ReferenceId = referenceId;
-            BrokerId = brokerId;
+            CustomerType = customerType;
+            MerchantId = merchantId;
             IsActive = true;
         }
 

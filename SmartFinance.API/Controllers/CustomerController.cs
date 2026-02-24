@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartFinance.Application.Contracts.Customers;
 using SmartFinance.Application.Contracts.Customers.Dto;
@@ -19,6 +20,7 @@ namespace SmartFinance.API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<CustomerListDto>> GetCustomer()
         {
             return await _customerService.GetTop100Customer();

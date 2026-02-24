@@ -1,4 +1,5 @@
 using Serilog;
+using SmartFinance.API.Configurations;
 using SmartFinance.API.Middlewares;
 using SmartFinance.Application;
 using SmartFinance.Infrastructure;
@@ -20,6 +21,7 @@ builder.Services.AddCors(options =>
                   .AllowCredentials();
         });
 });
+builder.Services.AddAuthenticationConfiguration(builder.Configuration);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -21,9 +21,10 @@ namespace SmartFinance.API.Controllers
             try
             {
                 await _authenticationService.RegisterAsync(dto);
+
                 return StatusCode(201, ApiResponse<object>.Success(200, null));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(400, ApiResponse<object>.Failure(400, ex.Message));
             }
@@ -35,12 +36,30 @@ namespace SmartFinance.API.Controllers
             try
             {
                 var result = await _authenticationService.LoginAsync(dto);
+
+                var cookieOptions = new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.None,
+                    Expires = result.ExpiresAt
+                };
+
+                Response.Cookies.Append("access_token", result.AccessToken, cookieOptions);
+
                 return Ok(ApiResponse<AuthResponseDto>.Success(200, result));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(400, ApiResponse<object>.Failure(400, ex.Message));
             }
+        }
+
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("access_token");
+            return Ok(ApiResponse<object>.Success(200, "Logged out successfully"));
         }
     }
 }

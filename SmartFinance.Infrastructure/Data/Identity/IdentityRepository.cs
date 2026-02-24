@@ -16,13 +16,13 @@ namespace SmartFinance.Infrastructure.Data.Identity
         {
             _identityDbContext = identityDbContext;
         }
-        public Task<string> GenerateNextNumberAsync(string sequenceName, string prefix)
+        public async Task<string> GenerateNextNumberAsync(string sequenceName, string prefix)
         {
-            var result = _identityDbContext.GeneratedNumberResults.FromSqlRaw("EXECUTE dbo.GenerateNextNumber @SequenceName, @Prefix", sequenceName, prefix)
+            var result = await _identityDbContext.GeneratedNumberResults.FromSqlRaw("EXECUTE dbo.GenerateNextNumber @SequenceName, @Prefix", sequenceName, prefix)
                 .AsNoTracking()
-                .FirstOrDefault();
+                .FirstOrDefaultAsync();
 
-            return result
+            return result.ToString();
         }
     }
 }

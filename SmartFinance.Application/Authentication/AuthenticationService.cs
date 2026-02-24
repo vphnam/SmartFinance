@@ -39,10 +39,12 @@ namespace SmartFinance.Application.Authentication
             {
                 var roles = await _userRoleRepository.GetRolesOfUser(userId: user.Id);
 
+                var token = _jwtTokenService.GenerateToken(user, roles);
+
                 return new AuthResponseDto
                 {
-                    AccessToken = _jwtTokenService.GenerateToken(user, roles).AccessToken,
-                    ExpiresAt = _jwtTokenService.GenerateToken(user, roles).ExpiresAt
+                    AccessToken = token.AccessToken,
+                    ExpiresAt = token.ExpiresAt
                 };
             }
             else

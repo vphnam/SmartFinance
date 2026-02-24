@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartFinance.Domain.Customer.CustomerAggregate;
 using SmartFinance.Domain.Identity;
-using SmartFinance.Infrastructure.DatabaseContext.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
