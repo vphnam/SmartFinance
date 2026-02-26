@@ -22,10 +22,17 @@ ALTER ROLE db_datawriter ADD MEMBER namvph;
 
 
 
-Add-Migration InitialCreate -Context CustomerDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
+Add-Migration InitialCustomerRelationship -Context CustomerDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
 Add-Migration SetUpIdentity -Context UserDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
 Update-Database -Context CustomerDbContext
 Update-Database -Context UserDbContext
 
 Add-Migration AddBusinessSequences -Context IdentityDbContext  -Project SmartFinance.Infrastructure  -StartupProject SmartFinance.API  -OutputDir Migrations
 Update-Database -Context IdentityDbContext
+
+Role
+05886410-d7b4-43fa-8e66-a1341aa38b97 Admin Admin
+User
+c937c4de-7ad2-4147-9cd6-4690ec2f1d7c 89bb15ad-eb87-428f-a67e-0ac0ed5ca5d5 user1 test@gmail.com 0900000001 $2b$10$JQoJBUDQojGoAFma.IT/CuYB2kBSJJBg/l2fIDAuaxis3ASfC4vQO True
+UserRole
+daf189fc-686c-450d-b24f-0a042c5fe18e c937c4de-7ad2-4147-9cd6-4690ec2f1d7c 05886410-d7b4-43fa-8e66-a1341aa38b97

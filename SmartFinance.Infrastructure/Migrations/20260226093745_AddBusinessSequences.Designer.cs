@@ -11,7 +11,7 @@ using SmartFinance.Infrastructure.DatabaseContext;
 namespace SmartFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(IdentityDbContext))]
-    [Migration("20260213094333_AddBusinessSequences")]
+    [Migration("20260226093745_AddBusinessSequences")]
     partial class AddBusinessSequences
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace SmartFinance.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SmartFinance.Infrastructure.DatabaseContext.Persistence.GeneratedNumberResult", b =>
+            modelBuilder.Entity("SmartFinance.Domain.Identity.GeneratedNumberResult", b =>
                 {
                     b.Property<int>("CurrentValue")
                         .HasColumnType("int");

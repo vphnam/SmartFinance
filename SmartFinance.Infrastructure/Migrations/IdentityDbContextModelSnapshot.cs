@@ -21,7 +21,7 @@ namespace SmartFinance.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SmartFinance.Infrastructure.DatabaseContext.Persistence.GeneratedNumberResult", b =>
+            modelBuilder.Entity("SmartFinance.Domain.Identity.GeneratedNumberResult", b =>
                 {
                     b.Property<int>("CurrentValue")
                         .HasColumnType("int");

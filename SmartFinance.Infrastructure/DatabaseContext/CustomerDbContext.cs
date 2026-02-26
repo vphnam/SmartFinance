@@ -16,12 +16,17 @@ namespace SmartFinance.Infrastructure.DatabaseContext
         }
 
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Merchant> Merchants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(
             typeof(CustomerDbContext).Assembly, 
             type => type.Namespace!.Contains("CustomerConfigurations"));
+
+            modelBuilder.ApplyConfigurationsFromAssembly(
+            typeof(CustomerDbContext).Assembly,
+            type => type.Namespace!.Contains("MerchantConfigurations"));
         }
     }
 }

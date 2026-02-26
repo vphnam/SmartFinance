@@ -58,7 +58,7 @@ namespace SmartFinance.Application.Authentication
                 throw new InvalidOperationException("User already existed");
             }
 
-            var user = User.Create("", request.UserName, request.EmailAddress, request.PhoneNumber, _hash.HashPassword(request.Password));
+            var user = User.Create("", request.UserName, request.EmailAddress, request.PhoneNumber, request.UserType, _hash.HashPassword(request.Password));
 
             await _userRepository.CreateAsync(user);
         }

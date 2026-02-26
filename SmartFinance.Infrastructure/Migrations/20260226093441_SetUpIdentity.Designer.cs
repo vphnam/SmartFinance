@@ -12,7 +12,7 @@ using SmartFinance.Infrastructure.DatabaseContext;
 namespace SmartFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20260203095227_SetUpIdentity")]
+    [Migration("20260226093441_SetUpIdentity")]
     partial class SetUpIdentity
     {
         /// <inheritdoc />
@@ -60,6 +60,12 @@ namespace SmartFinance.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime?>("EmailVerificationTokenExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailVerificationTokenHash")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");

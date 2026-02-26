@@ -12,8 +12,8 @@ using SmartFinance.Infrastructure.DatabaseContext;
 namespace SmartFinance.Infrastructure.Migrations
 {
     [DbContext(typeof(CustomerDbContext))]
-    [Migration("20260203025037_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20260226101503_InitialCustomerRelationship")]
+    partial class InitialCustomerRelationship
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,17 +33,17 @@ namespace SmartFinance.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CustomerId");
 
-                    b.Property<string>("BrokerId")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<string>("CustomerNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("CustomerType")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -53,10 +53,25 @@ namespace SmartFinance.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<string>("MerchantId")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("TaxNumber")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
@@ -72,55 +87,60 @@ namespace SmartFinance.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Customer", (string)null);
-
-                    b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.OrganizationCustomer", b =>
+            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.Merchant", b =>
                 {
-                    b.HasBaseType("SmartFinance.Domain.Customer.CustomerAggregate.Customer");
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(36)
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("MerchantId");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("OrganizationName")
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("MerchantName")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.ToTable("OrganizationCustomer", (string)null);
-                });
-
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.PersonalCustomer", b =>
-                {
-                    b.HasBaseType("SmartFinance.Domain.Customer.CustomerAggregate.Customer");
-
-                    b.Property<string>("CustomerName")
+                    b.Property<string>("MerchantNumber")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.ToTable("PersonalCustomer", (string)null);
-                });
+                    b.Property<string>("TaxNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.OrganizationCustomer", b =>
-                {
-                    b.HasOne("SmartFinance.Domain.Customer.CustomerAggregate.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("SmartFinance.Domain.Customer.CustomerAggregate.OrganizationCustomer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
+                    b.Property<DateTime>("UpdatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
 
-            modelBuilder.Entity("SmartFinance.Domain.Customer.CustomerAggregate.PersonalCustomer", b =>
-                {
-                    b.HasOne("SmartFinance.Domain.Customer.CustomerAggregate.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("SmartFinance.Domain.Customer.CustomerAggregate.PersonalCustomer", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasKey("Id");
+
+                    b.HasIndex("MerchantNumber")
+                        .IsUnique();
+
+                    b.ToTable("Merchant", (string)null);
                 });
 #pragma warning restore 612, 618
         }
