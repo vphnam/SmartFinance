@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SmartFinance.Application.Contracts.Authentication;
 using SmartFinance.Application.Contracts.Authentication.Dto;
+using SmartFinance.Domain.Customer.CustomerAggregate;
 using SmartFinance.Domain.User;
 using System;
 using System.Collections.Generic;
@@ -12,17 +13,23 @@ namespace SmartFinance.Application.Authentication
 {
     public class AuthenticationService : IAuthService
     {
+        private readonly ICustomerRepository _customerRepository;
+        private readonly IMerchantRepository _merchantRepository;
         private readonly IUserRepository _userRepository;
         private readonly IUserRoleRepository _userRoleRepository;
         private readonly IPasswordHasher _hash;
         private readonly IJwtTokenService _jwtTokenService;
         public AuthenticationService(IUserRepository userRepository, 
                                      IUserRoleRepository userRoleRepository,
+                                     ICustomerRepository customerRepository,
+                                     IMerchantRepository merchantRepository,
                                      IPasswordHasher hash, 
                                      IJwtTokenService jwtTokenService)
         {
             _userRepository = userRepository;
             _userRoleRepository = userRoleRepository;
+            _customerRepository = customerRepository;
+            _merchantRepository = merchantRepository;
             _hash = hash;
             _jwtTokenService = jwtTokenService;
         }
@@ -56,6 +63,13 @@ namespace SmartFinance.Application.Authentication
             if (await _userRepository.IsAnyAsync(n => n.UserName == request.UserName))
             {
                 throw new InvalidOperationException("User already existed");
+            }
+
+            var obj = new object(); ;
+
+            if (request.UserType == "C")
+            {
+                
             }
 
             var user = User.Create("", request.UserName, request.EmailAddress, request.PhoneNumber, request.UserType, _hash.HashPassword(request.Password));
